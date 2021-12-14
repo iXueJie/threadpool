@@ -1,0 +1,2 @@
+"D:\Program Files\mingw-w64\bin\ar.exe" qc libtaskqueue.a CMakeFiles/taskqueue.dir/taskqueue.c.obj
+"D:\Program Files\mingw-w64\bin\ranlib.exe" libtaskqueue.a
