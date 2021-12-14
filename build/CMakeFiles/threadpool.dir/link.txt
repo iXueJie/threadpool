@@ -1,2 +1,0 @@
-"D:\Program Files\mingw-w64\bin\ar.exe" qc libthreadpool.a CMakeFiles/threadpool.dir/threadpool.c.obj
-"D:\Program Files\mingw-w64\bin\ranlib.exe" libthreadpool.a

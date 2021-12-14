@@ -1,5 +1,0 @@
-E:/Prictice/threadpool/build/CMakeFiles/taskqueue.dir
-E:/Prictice/threadpool/build/CMakeFiles/threadpool.dir
-E:/Prictice/threadpool/build/CMakeFiles/test.dir
-E:/Prictice/threadpool/build/CMakeFiles/edit_cache.dir
-E:/Prictice/threadpool/build/CMakeFiles/rebuild_cache.dir
