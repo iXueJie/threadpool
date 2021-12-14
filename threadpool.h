@@ -1,26 +1,7 @@
 #pragma once
-#include <pthread.h>
-#include <stdbool.h>
 #include "taskqueue.h"
 
-typedef struct threadpool
-{
-    // 任务队列
-    taskqueue *tasks;
-
-    // 线程数组
-    pthread_t *thread_IDs;
-    int max;        // 最大线程数
-    int min;        // 最小线程数
-    int livenum;    // 存活线程数
-    int busynum;    // 忙线程数
-    int exit;       // 待销毁线程数
-
-    pthread_t admin;
-
-    bool shutdown;
-} threadpool;
-
+typedef struct threadpool;
 
 // 创建并初始化线程池
 threadpool *threadpool_create(int capacity, int min, int max);

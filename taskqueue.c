@@ -39,12 +39,12 @@ taskqueue *taskqueue_create(size_t capacity)
 }
 
 // 添加任务
-int taskqueue_enqueue(taskqueue* taskq, const threadpool_task *task)
+int taskqueue_enqueue(taskqueue* taskq, void *(*function)(void *), void *arg)
 {
     if (taskq->len < taskq->capacity)
     {
-        taskq->tasks[taskq->rear].function = task->function;
-        taskq->tasks[taskq->rear].arg = task->arg;
+        taskq->tasks[taskq->rear].function = function;
+        taskq->tasks[taskq->rear].arg = arg;
         ++(taskq->len);
         next(taskq, rear);
         return 1;
@@ -70,6 +70,18 @@ int taskqueue_dequeue(taskqueue* taskq, threadpool_task *ret_task)
     {
         return 0;
     }
+}
+
+// 获取队列长度
+int taskqueue_len(const taskqueue *taskq)
+{
+    return taskq->len;
+}
+
+// 判断队列是否满了
+bool taskqueue_isfull(const taskqueue *taskq)
+{
+    return taskq->len < taskq->capacity;
 }
 
 // 销毁任务对列
