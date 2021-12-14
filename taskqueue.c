@@ -4,8 +4,8 @@
 #include "taskqueue.h"
 
 // 队列的常用便捷操作
-#define next_position(queue, side) ((queue->side + 1) % queue->capacity)      // 返回下一个位置
-#define next(queue, side) queue->side = (queue->side + 1) % queue->capacity    // 指向下一个位置
+#define next_position(queue, side) ((queue->side + 1) % queue->capacity)        // 返回下一个位置
+#define next(queue, side) (queue->side = (queue->side + 1) % queue->capacity)   // 指向下一个位置
 
 // 创建任务对列并初始化
 taskqueue *taskqueue_create(size_t capacity)
@@ -21,7 +21,7 @@ taskqueue *taskqueue_create(size_t capacity)
             break;
         }
 
-        taskq->tasks = (threadpool_task *)malloc(sizeof(threadpool_task));
+        taskq->tasks = (threadpool_task *)malloc(sizeof(threadpool_task) * capacity);
         if (taskq->tasks == NULL)
         {
             printf("threadpool.taskqueue.tasks allocation failed.\n");
@@ -81,12 +81,17 @@ int taskqueue_len(const taskqueue *taskq)
 // 判断队列是否满了
 bool taskqueue_isfull(const taskqueue *taskq)
 {
-    return taskq->len < taskq->capacity;
+    return taskq->len == taskq->capacity;
 }
 
 // 销毁任务对列
-void *taskqueue_destroy(taskqueue* taskq)
+void taskqueue_destroy(taskqueue* taskq)
 {
+    if (taskq == NULL)
+    {
+        return;
+    }
+    
     free(taskq->tasks);
     taskq->tasks = NULL;
     free(taskq);

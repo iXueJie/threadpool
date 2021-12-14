@@ -32,4 +32,4 @@ int taskqueue_len(const taskqueue *taskq);
 bool taskqueue_isfull(const taskqueue *taskq);
 
 // 销毁任务对列
-void *taskqueue_destroy(taskqueue* taskq);
+void taskqueue_destroy(taskqueue* taskq);

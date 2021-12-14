@@ -1,7 +1,7 @@
 #pragma once
 #include "taskqueue.h"
 
-typedef struct threadpool;
+typedef struct threadpool threadpool;
 
 // 创建并初始化线程池
 threadpool *threadpool_create(int capacity, int min, int max);
